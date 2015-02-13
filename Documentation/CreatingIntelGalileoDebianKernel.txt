@@ -64,5 +64,8 @@ Grab a cup of coffee and sit back. Compiling a kernel can take some time....
 
 When complete the freshly compiled kernel will be out file to /src/bsp/linux-image-3.8.7+_3.8.7+-10.00.Custom_i386.deb
 
+Or you can skip all these and download a compiled kernel for Intel Galileo Debian 7 here.
+
+# wget linux-image-3.8.7+_3.8.7+-10.00.Custom_i386.deb -O https://github.com/mdelgert/IntelGalileo/blob/master/Sources/linux-image-3.8.7+_3.8.7+-10.00.Custom_i386.deb?raw=true
 
 For more details see http://sourceforge.net/p/galileodebian/wiki/SetupSDCard/, https://www.kernel.org/
