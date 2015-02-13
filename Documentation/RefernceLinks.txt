@@ -1,0 +1,56 @@
+Links and references
+
+Intel
+
+GalileoLinuxExamples.zip - https://communities.intel.com/docs/DOC-22272
+
+Build debian Linux distribution for Galileo board with debootstrap - https://communities.intel.com/thread/48074
+
+Galileo Gen 1 Development Board Datasheet - http://www.intel.com/content/www/us/en/embedded/products/galileo/galileo-g1-datasheet.html
+
+Intel Galileo (Gen 1) Development Board Documents - https://communities.intel.com/community/makers/galileo/documentation/galileodocuments
+
+Galileo Getting Started - Windows - https://communities.intel.com/docs/DOC-22872
+
+Galileo 101 - Getting Started Gen 1 (tutorial) -https://communities.intel.com/docs/DOC-22154
+
+Source forge (Excellent example and first working Debian image I came across on the internet.)
+
+Preparing the SDK VM - http://sourceforge.net/p/galileodebian/wiki/SetupSDCard/
+
+galileo-debian Beta Debian for Intel Galileo Board - http://sourceforge.net/projects/galileodebian/
+
+How to Install the image onto a SD card - http://sourceforge.net/p/galileodebian/wiki/How%20to%20Install%20the%20image%20onto%20a%20SD%20card/
+
+How to Boot the image - http://sourceforge.net/p/galileodebian/wiki/How%20to%20Boot%20the%20image/
+
+How to expand the root filesystem size - http://sourceforge.net/p/galileodebian/wiki/How%20to%20expand%20the%20root%20filesystem%20to%20use%20the%20entire%20SD%20card/
+
+Debian on Galileo: SD and SDK images - http://sourceforge.net/p/galileodebian/wiki/DebianOnGalileo/
+
+Microsoft (This is a version of Windows 8 for galileo. For me this seemed really buggy.)
+
+Windows Developer Program for IoT - http://dev.windows.com/en-us/featured/Windows-Developer-Program-for-IoT
+
+Creating a Microsoft Windows bootable microSD card - http://ms-iot.github.io/content/SetupGalileo.htm
+
+Windows Embedded Pre-Release Programs - https://connect.microsoft.com/windowsembeddedIoT/Downloads
+
+Windows Developer Program Galileo SDK by Microsoft Open Technologies - https://github.com/ms-iot/galileo-sdk
+
+Other links
+
+How to run debian on Galileo board - http://www.instructables.com/id/How-to-run-debian-on-Galileo-board/
+
+Intel Galileo Full Featured Debian Linux Prebuilt Image - http://devgrapher.com/en/?p=497
+
+Installing Debian on the Intel Galileo - http://allynh.com/blog/installing-debian-on-the-intel-galileo/
+
+Intel Galileo Wiki (Has great links and references.) - http://www.crashcourse.ca/wiki/index.php/Intel_Galileo
+
+Creating a Bootable SD Card for an Intel® Galileo Board (Youtube video) - https://www.youtube.com/watch?v=8kJuH7YYSh4
+
+Segfault libpthread Intel Galileo Links
+
+Debian Bug report logs - #738575 - https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=738575
+

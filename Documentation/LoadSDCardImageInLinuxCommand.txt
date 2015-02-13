@@ -1,0 +1,26 @@
+1. Disconnect SD card from workstation and attach to Debian Virtual machine
+
+2. Verify linux can see the SD card
+
+# fdisk -l
+
+3. Write the image to the SD card in linux
+
+# dd if=/src/IntelGalileoDebian2GB.img of=/dev/sdb bs=10MB
+
+Notes:
+
+To show progress during copy run command.
+
+# apt-get install pv dialog
+
+(pv -n /src/IntelGalileoDebian2GB.img | dd of=/dev/sdb bs=10MB) 2>&1 | dialog --gauge "Running dd command (cloning), please wait..." 10 70 0
+
+
+For more details see link: 
+
+http://sourceforge.net/p/galileodebian/wiki/DebianOnGalileo/
+
+http://askubuntu.com/questions/363842/how-to-make-the-dd-command-be-verbose
+
+http://www.cyberciti.biz/faq/linux-unix-dd-command-show-progress-while-coping/
