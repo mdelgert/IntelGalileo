@@ -55,12 +55,14 @@ All that said this is the only fix that works and completely removes this bug.
 
 First find in Debian all the libthread binaries.
 
-# find /lib -type f -name \*pthread\*so
+# find / -type f -name \*pthread\*so
 
 This should return the following.
 ------------------------------------------------------------------
-root@IntelGalileoDebian1:/# find /lib -type f -name \*pthread\*so
+root@IntelGalileoDebian1:~# find / -type f -name \*pthread\*so
+/usr/lib/i386-linux-gnu/libpthread.so
 /lib/i386-linux-gnu/libpthread-2.13.so
+
 ------------------------------------------------------------------
 
 The example at sourceforge was a good suggestion to backup the file. The issue I was having is the sybolic link followed the backup file.
@@ -69,15 +71,13 @@ I am not interested in the backup broken file any more but just to be safe I cre
 
 The actual working command this does no backup of the file but it removed the seqfaults.
 
-# for i in `/usr/bin/find /lib -type f -name \*pthread\*so`; do sed -i "s/\xf0\x0f\xb1\x8b/\x90\x0f\xb1\x8b/g" ${i}; done
+# for i in `find / -type f -name \*pthread\*so`; do sed -i "s/\xf0\x0f\xb1\x8b/\x90\x0f\xb1\x8b/g" ${i}; done
 
 If you are afraid to run the linux command or just want the patched file you can get a copy from here. - https://github.com/mdelgert/IntelGalileo/raw/master/Sources/libpthread-2.13.so.7z
 
 ##############################################################################################################################################################
 PLEASE ALWAYS REMEMBER THIS PATCH for the reason if Debian releases an update to libpthread-2.13.so this command will need to be ran again.
 ##############################################################################################################################################################
-
-
 
 For more information see articles
 

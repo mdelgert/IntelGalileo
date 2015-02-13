@@ -1,0 +1,40 @@
+Setting up grub for Intel Galileo Debian SDCard
+
+1. # mkdir /src/GalileoBoot
+
+2. # mount /dev/loop0p1 /src/GalileoBoot
+
+3. # mkdir -p /src/GalileoBoot/boot/grub
+
+4. # nano /src/GalileoBoot/boot/grub/grub.conf
+
+default 1
+timeout 10
+
+color white/blue white/cyan
+
+title Clanton SVP kernel-SPI initrd-SPI IMR-On IO-APIC/HPET NoEMU
+    kernel --spi root=/dev/ram0 console=ttyS1,115200n8 earlycon=uart8250,mmio32,,$EARLY_CON_ADDR_REPLACE,115200n8 vmalloc=384M reboot=efi,warm apic=debug rw
+    initrd --spi
+
+title Intel Galileo Debian Wheezy - https://github.com/mdelgert/IntelGalileo
+    root (hd0,2)
+    kernel /boot/vmlinuz-3.8.7+ root=/dev/mmcblk0p3 3 console=ttyQRK1,115200n8 earlycon=uart8250,mmio32,$EARLY_CON_ADDR_REPLACE,115200n8 vmalloc=3844M reboot=efi,warm apic=debug rw LABEL=boot debugshell=5
+    initrd /boot/initrd.img-3.8.7+
+
+
+5. Detach the SD image
+
+chroot /src/GalileoRoot
+
+# apt-get clean
+
+# Exit
+
+# killall ntpd
+
+# umount /src/GalileoRoot/dev/pts /src/GalileoRoot/dev /src/GalileoRoot /src/GalileoBoot
+
+# losetup -d /dev/loop0
+	
+For more info see article. - http://sourceforge.net/p/galileodebian/wiki/SetupSDCard/
