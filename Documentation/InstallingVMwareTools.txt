@@ -1,0 +1,23 @@
+1. SSH into server
+
+2. $ su enter password root
+
+3. # apt-get update
+
+4. # apt-get upgrade
+
+5. Add the VMware ISO C:\Program Files (x86)\VMware\VMware Workstation\linux.iso
+
+6. # apt-get install binutils cpp gcc make psmisc linux-headers-$(uname -r)
+
+7. # mount /dev/cdrom /mnt/
+
+8. # tar -C /tmp -zxvf /mnt/VMwareTools-9.9.0-2304977.tar.gz
+
+9. # cd /tmp/vmware-tools-distrib
+
+10. # ./vmware-install.pl
+
+11. Press enter for all defaults.
+
+For more details see links http://www.debianadmin.com/install-vmware-tools-on-debian-wheezy.html or https://www.vmware.com/support/ws5/doc/ws_newguest_tools_linux.html

@@ -10,20 +10,19 @@ Bridged network adapter
 
 3. Install Debian with no GUI
 
-4. Select defaults and unselect all packages
+4. Only a package to install is SSH server
 
-5. Only a package to install is SSH server
-
-6. Add the following user accounts
+5. Add the following user accounts
 
 User Name: root Password: root
 User Name: user Password: user
 
-7. Partitioning method "Guided - use entire disk".
+6. Partitioning method "Guided - use entire disk".
 
-8. Partitioning scheme "All files in one partition (recommended for new users)"
+7. Partitioning scheme "All files in one partition (recommended for new users)"
 
-9. Write changes to disk and save
+8. Write changes to disk and save
 
+9. Choose software to install: SSH Server & Standard system utilities
 
-
+10. Install grub boot loader on a hard disk "select yes"

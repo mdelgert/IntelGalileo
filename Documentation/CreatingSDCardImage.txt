@@ -1,0 +1,29 @@
+1. Preparing the virtual machine
+
+2. # apt-get install debootstrap build-essential binutils git gawk chrpath kernel-package fakeroot libncurses5-dev parted
+
+3. # mkdir /src
+
+4. # cd /src
+
+5. Download kernel packages
+
+# wget http://downloadmirror.intel.com/23197/eng/Board_Support_Package_Sources_for_Intel_Quark_v1.0.1.7z
+
+See following link for latest link https://communities.intel.com/docs/DOC-22226
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+For more details see http://sourceforge.net/p/galileodebian/wiki/SetupSDCard/

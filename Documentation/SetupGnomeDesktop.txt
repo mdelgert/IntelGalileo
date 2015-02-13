@@ -1,0 +1,7 @@
+1. Install a basic GUI to use gparted later
+
+2. # aptitude -q --without-recommends -o APT::Install-Recommends=no -y install ~t^desktop$ ~t^gnome-desktop$
+
+3. # apt-get install gparted
+
+See article for full details https://wiki.debian.org/Gnome
