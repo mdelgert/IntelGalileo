@@ -35,6 +35,7 @@ optional wifi support
 # apt-get install wireless-tools
 # apt-get install wpasupplicant
 
+Note: Common wifi drivers are located at - https://github.com/mdelgert/IntelGalileo/tree/master/Sources
 
 For more information see articles:
 
