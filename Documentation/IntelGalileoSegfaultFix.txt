@@ -1,8 +1,72 @@
 Many articles and forum posts regarding segfault errors.
 
-Run this command to patch
+Intel Galileo quark processor suffers from a bug which causes the execution to segfault under certain conditions.
 
-# 
+This is a very confusing issue and I only found one article that almost fixed the issue.
+
+In article http://sourceforge.net/p/galileodebian/wiki/SetupSDCard/
+
+This command was suggested.
+
+###############################################################################################################################################
+# for i in `/usr/bin/find /lib -type f -name \*pthread\*so`; do cp ${i} ${i}.bak; sed -i "s/\xf0\x0f\xb1\x8b/\x90\x0f\xb1\x8b/g" ${i}; done
+###############################################################################################################################################
+
+This was a good suggestion to backup the file before patching. The issue is the sybolic links will follow the backup files.
+
+Intel calls this a hack but I have not seen a release that address this issue.
+
+Note: This is a major annoying issue and below is the only line that works well.
+
+Before listing the command let me explain what is happening the Debian things Quark processor has more than one core.
+
+Default installation of Debian enables threading due to the processors has the "pae" flag.
+
+When you run the command. 
+
+cat /proc/cpuinfo
+
+processor       : 0
+vendor_id       : GenuineIntel
+cpu family      : 5
+model           : 9
+model name      : 05/09
+stepping        : 0
+cpu MHz         : 399.088
+cache size      : 0 KB
+fdiv_bug        : no
+hlt_bug         : no
+f00f_bug        : yes
+coma_bug        : no
+fpu             : yes
+fpu_exception   : yes
+cpuid level     : 7
+wp              : yes
+flags           : fpu vme pse tsc msr pae cx8 apic pbe nx smep
+bogomips        : 798.17
+clflush size    : 32
+cache_alignment : 32
+address sizes   : 32 bits physical, 32 bits virtual
+power management:
+
+When the silicon was sent to the fab it has this flag "pae" on a single core chip. This is not a bug of Debian its a bug with intel.
+
+All that said this is the only fix that works and completely removes this bug.
+
+First find in Debian all the libthread binaries.
+
+# find /lib -type f -name \*pthread\*so
+
+This should return the following.
+------------------------------------------------------------------
+root@IntelGalileoDebian1:/# find /lib -type f -name \*pthread\*so
+/lib/i386-linux-gnu/libpthread-2.13.so
+------------------------------------------------------------------
+
+The example at sourceforge was a good suggestion to backup the file. The issue I was having is the sybolic link followed the backup file.
+
+I am not interested in the backup broken file any more but just to be safe I created a backup copy here on github.
+
 
 
 For more information see articles

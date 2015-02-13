@@ -89,6 +89,11 @@ Change %sudo ALL=(ALL:ALL) ALL => %sudo ALL=(ALL) NOPASSWD:ALL
 15. Install kernel packages
 # dpkg -i /root/*.deb
 
+16. Optional install wifi drivers
+
+Drivers can be downloaded from git or from - https://wireless.wiki.kernel.org/en/users/Drivers/iwlwifi
+
+# wget https://github.com/mdelgert/IntelGalileo/raw/master/Sources/iwlwifiDriversIntelGalileo.7z
 
 For more information see articles:
 
@@ -99,7 +104,7 @@ Intel Galileo adding wifi
 http://www.malinov.com/Home/sergey-s-blog/intelgalileo-addingwifi
 
 Wireless kernel drivers
-https://wireless.wiki.kernel.org/en/users/Drivers/iwlwifi
+
 
 Debian dpkg
 https://wiki.debian.org/ListInstalledPackages
