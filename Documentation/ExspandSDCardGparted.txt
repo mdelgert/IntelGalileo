@@ -1,0 +1,21 @@
+Expanding the SD card using gparted
+
+1. Install gparted
+
+# apt-get install gparted
+
+2. Open gparted in gnome
+
+# gparted
+
+3. From GUI select /dev/sdb
+
+4. Right click on sdb3 partition
+
+5. Select the scroll bar to match entire size of SD card.
+
+6. Click resize move
+
+7. Click apply
+
+8. Remove the SD card and install in Intel Galileo
