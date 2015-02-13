@@ -1,0 +1,68 @@
+1. Preparing the virtual machine
+
+2. # apt-get install debootstrap build-essential binutils git gawk chrpath kernel-package fakeroot libncurses5-dev parted p7zip-full lrzip
+
+3. # mkdir /src
+
+4. # cd /src
+
+5. Download kernel packages see following link for latest link https://communities.intel.com/docs/DOC-22226
+
+# wget http://downloadmirror.intel.com/23197/eng/Board_Support_Package_Sources_for_Intel_Quark_v1.0.1.7z
+
+If Intel is down 
+
+# wget -O Board_Support_Package_Sources_for_Intel_Quark_v1.0.1.7z https://github.com/mdelgert/IntelGalileo/blob/master/Sources/Board_Support_Package_Sources_for_Intel_Quark_v1.0.1.7z?raw=true 
+
+6. Extract patches and has for HEAD of git tree
+
+# mkdir /src/bsp && cd /src/bsp
+
+# 7z x ../*7z && tar xvf quark_linux* && rm -f *7z *gz *txt
+
+# cat quark_linux*/upstream.cfg
+
+# git clone git://git.kernel.org/pub/scm/linux/kernel/git/stable/linux-stable.git
+
+# cd linux-stable/
+
+# git reset --hard 531ec28f9f26f78797124b9efcf2138b89794a1e  
+
+# git am ../quark_linux*/00*
+
+7. Add kernel config 
+
+Several options use default stock kernel config 
+
+# cp ./meta/cfg/kernel-cache/bsp/quark/quark.cfg .config
+
+or use example config with working cifs support
+
+wget -O .config https://raw.githubusercontent.com/mdelgert/IntelGalileo/master/Sources/config-3.8.7+
+
+Note: Several article around Intel Galileo issues when mounting samba CIFS drives having errors "CIFS support has to be enabled in the kernel".
+
+Option to backup kernel before building using tar
+
+tar --exclude='.git' -zcvf /src/bsp/IntelGalileoDebianKernelSource1.tar.gz /src/bsp/linux-stable
+
+You can download this Intel Galileo Debian kernel source with cifs support from here. - https://github.com/mdelgert/IntelGalileo/tree/master/Sources/IntelGalileoDebianKernelSource
+
+Option to backup patched quark linux kernel
+
+tar -zcvf /src/bsp/quark_linux_v3.8.7+v1.0.1.tar.gz /src/bsp/quark_linux_v3.8.7+v1.0.1
+
+8. Compiling the Intel Galileo Debian Kernel
+
+# cd /src/bsp/linux-stable
+
+Optional adjust the kernel configuration options # make menuconfig
+
+# fakeroot make-kpkg --initrd  kernel_image modules_image
+
+Grab a cup of coffee and sit back. Compiling a kernel can take some time....
+
+When complete the freshly compiled kernel will be out file to /src/bsp/linux-image-3.8.7+_3.8.7+-10.00.Custom_i386.deb
+
+
+For more details see http://sourceforge.net/p/galileodebian/wiki/SetupSDCard/, https://www.kernel.org/
