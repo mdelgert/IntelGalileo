@@ -1,0 +1,29 @@
+1. Download 32-bit PC netinst iso "debian-7.8.0-i386-netinst.iso" from https://www.debian.org/distrib/
+
+2. Create new VMware virtual machine with the following settings.
+
+Virtual machine name: IntelGalileoDebian1
+Maximum disk size 80GB thing provision 
+Memory: 512MB
+Processors: 1
+Bridged network adapter
+
+3. Install Debian with no GUI
+
+4. Select defaults and unselect all packages
+
+5. Only a package to install is SSH server
+
+6. Add the following user accounts
+
+User Name: root Password: root
+User Name: user Password: user
+
+7. Partitioning method "Guided - use entire disk".
+
+8. Partitioning scheme "All files in one partition (recommended for new users)"
+
+9. Write changes to disk and save
+
+
+
