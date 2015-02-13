@@ -2,6 +2,73 @@ After the SD card image has been unmounted the simple mount command will not wor
 
 The reason for this the SD card image we created has three partitions.
 
+The following steps are for remounting the Galileo Debian image.
+
+1. Look at the disk image partitions.
+
+# cd /src
+
+# fdisk -lu IntelGalileoDebian2GB.img
+
+------------------------------------------------------------------------------------------------------------------------------
+root@IntelGalileoDebian1:/src# fdisk -lu IntelGalileoDebian2GB.img
+
+Disk IntelGalileoDebian2GB.img: 2147 MB, 2147483648 bytes
+4 heads, 32 sectors/track, 32768 cylinders, total 4194304 sectors
+Units = sectors of 1 * 512 = 512 bytes
+Sector size (logical/physical): 512 bytes / 512 bytes
+I/O size (minimum/optimal): 512 bytes / 512 bytes
+Disk identifier: 0x000105b9
+
+Device Boot      					 Start         End      Blocks   Id  System
+IntelGalileoDebian2GB.img1            2048      194559       96256    c  W95 FAT                          32 (LBA)
+IntelGalileoDebian2GB.img2          196608     1198079      500736   82  Linux s                          wap / Solaris
+IntelGalileoDebian2GB.img3         1198080     3125247      963584   83  Linux
+------------------------------------------------------------------------------------------------------------------------------
+
+# losetup /dev/loop0 IntelGalileoDebian2GB.img -o $((1198080 * 512))
+
+2. Look at the file system
+
+# file -s /dev/loop0
+
+3. Mount the partition.
+
+# mount /dev/loop0 /src/GalileoRoot
+
+4. Unmount the GalileoRoot partition.
+
+# umount /src/GalileoRoot
+# losetup -d /dev/loop0
+
+5. Mounting the boot partition
+
+# losetup /dev/loop0 IntelGalileoDebian2GB.img -o $((2048 * 512))
+
+Verify mount & mount
+
+# file -s /dev/loop0
+
+# mount /dev/loop0 /src/GalileoBoot
+
+6. Unmount the GalileoRoot partition.
+
+# umount /src/GalileoBoot
+# losetup -d /dev/loop0
+
+
+Note: If you get the following error message change directories out of the mount 
+
+# cd /src
+
+Example error message.
+
+umount: /src/GalileoBoot: device is busy.
+        (In some cases useful info about processes that use
+         the device is found by lsof(8) or fuser(1))
+root@IntelGalileoDebian1:/src/GalileoBoot/boot/grub# ls
+
+
 Related Article
 
 Loop-mounting partitions from a disk image - http://madduck.net/blog/2006.10.20:loop-mounting-partitions-from-a-disk-image/

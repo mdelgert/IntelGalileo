@@ -1,0 +1,50 @@
+If you downloaded the example sd card image from the example posted on git most wifi drivers have been included.
+
+1. Recommended connect to Galileo console.
+
+This article explains how to connect and hardware needed. - https://communities.intel.com/thread/46335
+
+2. Add setup wpa supplicant
+
+# wpa_passphrase MyWiFi << EOF > /etc/wpa_supplicant.conf
+> MyPassPhrase
+> EOF
+
+3. Enable wifi in interface
+
+# nano /etc/network/interfaces
+
+Example interfaces file.
+
+# interfaces(5) file used by ifup(8) and ifdown(8)
+auto lo
+iface lo inet loopback
+
+#Commented out for faster boot if you do not plan in using wired connection
+#auto eth0
+#iface eth0 inet dhcp
+
+#Added for wifi connection
+
+auto wlan0
+iface wlan0 inet dhcp
+wireless_mode managed
+wireless_essid any
+wpa-driver wext
+wpa-conf /etc/wpa_supplicant.conf
+
+4. For DNS to work properly on your network you may need to add it.
+
+# nano /etc/resolv.conf
+
+Example
+
+nameserver 192.168.1.1
+
+5. Restart networking
+
+# /etc/init.d/networking restart
+
+Related articles
+
+Intel Galileo Meets Wireless - http://www.malinov.com/Home/sergey-s-blog/intelgalileo-addingwifi

@@ -54,3 +54,4 @@ Segfault libpthread Intel Galileo Links
 
 Debian Bug report logs - #738575 - https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=738575
 
+Debian GNU/Linux Crash Course - https://www.youtube.com/playlist?list=PL8E4D62A3588EF462

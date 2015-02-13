@@ -14,8 +14,29 @@ To show progress during copy run command.
 
 # apt-get install pv dialog
 
-(pv -n /src/IntelGalileoDebian2GB.img | dd of=/dev/sdb bs=10MB) 2>&1 | dialog --gauge "Running dd command (cloning), please wait..." 10 70 0
+# (pv -n /src/IntelGalileoDebian2GB.img | dd of=/dev/sdb bs=10MB) 2>&1 | dialog --gauge "Running cloning Intel Galileo Debian SD Card, please wait..." 10 70 0
 
+4. You can verify the disk clone after complete by typing
+
+# fdisk -l
+
+Example 
+------------------------------------------------------------------------------------------------
+
+Disk /dev/sdb: 15.8 GB, 15804137472 bytes
+4 heads, 32 sectors/track, 241152 cylinders, total 30867456 sectors
+Units = sectors of 1 * 512 = 512 bytes
+Sector size (logical/physical): 512 bytes / 512 bytes
+I/O size (minimum/optimal): 512 bytes / 512 bytes
+Disk identifier: 0x000105b9
+
+Device Boot         Start         End      Blocks   Id  System
+/dev/sdb1            2048      194559       96256    c  W95 FAT32 (LBA)
+/dev/sdb2          196608     1198079      500736   82  Linux swap / Solaris
+/dev/sdb3         1198080     3125247      963584   83  Linux
+root@IntelGalileoDebian1:/src#
+
+------------------------------------------------------------------------------------------------
 
 For more details see link: 
 
