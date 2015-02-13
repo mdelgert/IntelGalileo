@@ -1,0 +1,14 @@
+Many articles and forum posts regarding segfault errors.
+
+Run this command to patch
+
+# 
+
+
+For more information see articles
+
+https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=738575
+
+https://communities.intel.com/message/232634#232634
+
+http://wiki.ros.org/IntelGalileo/Debian

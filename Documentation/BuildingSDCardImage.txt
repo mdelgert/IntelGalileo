@@ -1,0 +1,29 @@
+Creating the blank SD card image
+
+# cd /src
+
+Example 2G SD card image
+
+1. Create the image file 
+
+# dd of=IntelGalileoDebian2GB.img bs=1 count=0 seek=2G
+
+2. Mount the image 
+
+# losetup -f IntelGalileoDebian2GB.img
+
+3. Partition the SD card
+
+# parted /dev/loop0 mktable msdos
+# parted /dev/loop0 mkpart primary fat32 1 100MB
+# parted /dev/loop0 mkpart primary linux-swap 101MB 613MB
+# parted /dev/loop0 mkpart primary ext3 614MB 1600MB
+# partx -a /dev/loop0
+# mkfs.vfat -I /dev/loop0p1
+# mkfs.ext3 /dev/loop0p3
+
+Note: If you get error message "mkfs.vfat: command not found"
+
+# apt-get install dosfstools
+
+For more info see article http://sourceforge.net/p/galileodebian/wiki/SetupSDCard/

@@ -1,0 +1,48 @@
+1. Building the chroot
+
+# mkdir /src/GalileoRoot
+
+2. Mount the ext3 loop partition 
+
+# mount /dev/loop0p3 /src/GalileoRoot
+
+3. Installing Debian Wheezy through debootstrap
+
+# debootstrap --arch i386 stable /src/GalileoRoot http://http.debian.net/debian
+
+Grab another cup of coffee.....
+
+Note: After debootstrap completes you will receive a message "Base system installed successfully."
+
+4. Copy the custom kernel into the new image
+
+# cp /src/bsp/linux-image-3.8.7+_3.8.7+-10.00.Custom_i386.deb /src/GalileoRoot/root/
+
+5. Chroot into the Galileo image
+
+chroot /src/GalileoRoot
+
+Note: You are now in the chroot
+
+--------ToDo---------------------------------------------
+
+6. Install packages you will need to have a working system
+
+# apt-get install sudo locales ntp openssh-server vim initramfs-tools net-tools bash-completion python python-pip
+
+optional wifi support
+
+# apt-get install wireless-tools
+# apt-get install wpasupplicant
+
+
+For more information see articles:
+
+Debian Debootstrap
+https://wiki.debian.org/Debootstrap
+
+Intel Galileo adding wifi
+http://www.malinov.com/Home/sergey-s-blog/intelgalileo-addingwifi
+
+Wireless kernel drivers
+https://wireless.wiki.kernel.org/en/users/Drivers/iwlwifi

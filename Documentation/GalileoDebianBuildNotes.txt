@@ -8,6 +8,8 @@ Memory: 512MB
 Processors: 1
 Bridged network adapter
 
+Note: To see the exact config for this VM grab file - https://github.com/mdelgert/IntelGalileo/blob/master/Sources/IntelGalileoDebian1.vmx
+
 3. Install Debian with no GUI
 
 4. Only a package to install is SSH server
