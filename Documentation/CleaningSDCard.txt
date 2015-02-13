@@ -1,0 +1,31 @@
+Windows diskpart
+
+If image does not copy over correctly to SD card do a complete diskpart and clean.
+
+1. From windows run from command prompt
+
+diskpart
+
+2. List you disks
+
+DISKPART> list disk
+
+################################################################################################################
+
+3. Be very careful to only select sd card for the reason a clean on the wrong disk will erase a local drive.
+
+On my local computer my SD card is Disk 2
+
+DISKPART> select Disk 2
+
+4. Verify one more time before running clean command to make sure you have the correct disk selected.
+
+DISKPART> list disk
+
+5. Run the following command. This will erase and delete all data and partitions from the SD card. All data will be lost!
+
+DISKPART> clean
+
+################################################################################################################
+
+Article relating to Galileo SD card setup - http://www.polyideas.com/blog/2013/12/31/ntrtwwimas9lyte7w66neyht079xgy

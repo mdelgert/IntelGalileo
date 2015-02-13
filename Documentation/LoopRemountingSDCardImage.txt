@@ -1,0 +1,7 @@
+After the SD card image has been unmounted the simple mount command will not work to reattach and make changes to your custom image.
+
+The reason for this the SD card image we created has three partitions.
+
+Related Article
+
+Loop-mounting partitions from a disk image - http://madduck.net/blog/2006.10.20:loop-mounting-partitions-from-a-disk-image/
