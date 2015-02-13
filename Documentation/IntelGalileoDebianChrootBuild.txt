@@ -18,24 +18,77 @@ Note: After debootstrap completes you will receive a message "Base system instal
 
 # cp /src/bsp/linux-image-3.8.7+_3.8.7+-10.00.Custom_i386.deb /src/GalileoRoot/root/
 
-5. Chroot into the Galileo image
+5. Mount Chroot system points.
+
+mount --bind /dev /src/GalileoRoot/dev/
+mount --bind /dev/pts /src/GalileoRoot/dev/pts
+
+6. Chroot into the Galileo image
 
 chroot /src/GalileoRoot
 
 Note: You are now in the chroot
 
---------ToDo---------------------------------------------
-
 6. Install packages you will need to have a working system
+
+# apt-get update
 
 # apt-get install sudo locales ntp openssh-server vim initramfs-tools net-tools bash-completion python python-pip
 
-optional wifi support
+Optional wifi support
 
-# apt-get install wireless-tools
-# apt-get install wpasupplicant
+# apt-get install wireless-tools wpasupplicant
+
+Other recommended packages
+# apt-get install git
 
 Note: Common wifi drivers are located at - https://github.com/mdelgert/IntelGalileo/tree/master/Sources
+
+7. Add serial console support
+
+# nano /etc/inittab
+
+# add following lines to EOF
+
+T0:2345:respawn:/sbin/getty -L 115200 ttyQRK1 vt102
+
+8. Change root password
+
+# passwd
+
+Note: Root password for this image is root
+
+9. Add a regular user
+
+# adduser user
+
+Note: Password is user
+
+10. Add user to sudo group
+
+# addgroup user sudo
+
+11. Update visudo
+
+# visudo
+
+Change %sudo ALL=(ALL:ALL) ALL => %sudo ALL=(ALL) NOPASSWD:ALL
+
+12. Add machine name to name resolution
+
+# nano /etc/hosts
+
+13. Setup machine name
+
+# nano /etc/hostname
+
+14. Enable DHCP on network on boot
+
+# nano /etc/network/interfaces
+
+15. Install kernel packages
+# dpkg -i /root/*.deb
+
 
 For more information see articles:
 
@@ -47,3 +100,6 @@ http://www.malinov.com/Home/sergey-s-blog/intelgalileo-addingwifi
 
 Wireless kernel drivers
 https://wireless.wiki.kernel.org/en/users/Drivers/iwlwifi
+
+Debian dpkg
+https://wiki.debian.org/ListInstalledPackages
