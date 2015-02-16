@@ -1,0 +1,8 @@
+1. Install part image
+
+# apt-get install partimage
+
+Articles
+http://www.debianadmin.com/backup-and-restore-linux-partitions-using-partimage.html
+https://packages.debian.org/sid/partimage
+http://www.partimage.org/Download

@@ -1,0 +1,7 @@
+
+
+Related articles:
+
+http://www.mono-project.com/docs/getting-started/install/linux/#debian-ubuntu-and-derivatives
+
+http://www.mono-project.com/docs/getting-started/mono-basics/

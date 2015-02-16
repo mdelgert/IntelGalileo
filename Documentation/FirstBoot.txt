@@ -1,0 +1,47 @@
+1. Assigning static IP address
+
+# nano /etc/network/interfaces
+
+Example:
+
+# interfaces(5) file used by ifup(8) and ifdown(8)
+auto lo
+iface lo inet loopback
+
+# DHCP ASSIGNED
+# auto eth0
+# iface eth0 inet dhcp
+
+# STATIC ASSIGNED
+auto eth0
+iface eth0 inet static
+address 192.168.1.10
+netmask 255.255.255.0
+gateway 192.168.1.1
+
+2. Change passwords for following accounts
+
+user & root
+
+user@Galileo1:~$ passwd
+Changing password for user. (Note: Default password is user)
+(current) UNIX password:
+Enter new UNIX password:
+Retype new UNIX password:
+passwd: password updated successfully
+
+3. Change password of root
+
+user@Galileo1:~$ su
+Password: (Note: This will be your new password for account user.)
+root@Galileo1:/home/user# passwd
+Enter new UNIX password:
+Retype new UNIX password:
+passwd: password updated successfully
+root@Galileo1:/home/user#
+
+4. Change host name
+
+# nano /etc/hostname
+
+shutdown 

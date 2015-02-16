@@ -1,0 +1,28 @@
+One quick test I run to verify the libpthread-2.13.so has been patched and is working properly is to pull git source.
+
+When I was having the seqfaults error the Galileo could even complete the following task.
+
+# git clone https://github.com/MarlinFirmware/Marlin.git
+
+---------------------------------------------------------------------
+root@Galileo1:/src# git clone https://github.com/MarlinFirmware/Marlin.git
+Cloning into 'Marlin'...
+remote: Counting objects: 9935, done.
+remote: Compressing objects: 100% (117/117), done.
+remote: Total 9935 (delta 79), reused 90 (delta 44)
+Receiving objects: 100% (9935/9935), 17.65 MiB | 389 KiB/s, done.
+Resolving deltas: 100% (5846/5846), done.
+Checking out files: 100% (797/797), done.
+---------------------------------------------------------------------
+
+When the libpthread-2.13.so has been patched git pulls work like above and you shouldn't see any errors in your logs.
+
+To to look at Galileo logs for seqfaults run the following command.
+
+# cat /var/log/kern.log
+
+When things are running smoothly you will not see any errors in the log file.
+
+you can also look at other logs to verify the helath of the Galileo.
+
+# cat /var/log/debug

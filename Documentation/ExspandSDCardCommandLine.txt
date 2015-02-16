@@ -1,0 +1,119 @@
+Expanding Intel Galileo SD card root file system from the command line.
+
+1. First look at current SD card disk space and mounts.
+
+root@Galileo1:~# df -h
+Filesystem      Size  Used Avail Use% Mounted on
+rootfs          927M  577M  303M  66% /
+udev             10M     0   10M   0% /dev
+tmpfs            24M  120K   24M   1% /run
+/dev/mmcblk0p3  927M  577M  303M  66% /
+tmpfs           5.0M     0  5.0M   0% /run/lock
+tmpfs            47M     0   47M   0% /run/shm
+
+2. Next look at SD card partitions
+
+root@Galileo1:~# fdisk -u /dev/mmcblk0
+
+Command (m for help): p
+
+Disk /dev/mmcblk0: 15.8 GB, 15804137472 bytes
+4 heads, 32 sectors/track, 241152 cylinders, total 30867456 sectors
+Units = sectors of 1 * 512 = 512 bytes
+Sector size (logical/physical): 512 bytes / 512 bytes
+I/O size (minimum/optimal): 512 bytes / 512 bytes
+Disk identifier: 0x000105b9
+
+        Device Boot      Start         End      Blocks   Id  System
+/dev/mmcblk0p1            2048      194559       96256    c  W95 FAT32 (LBA)
+/dev/mmcblk0p2          196608     1198079      500736   82  Linux swap / Solaris
+/dev/mmcblk0p3         1198080     3125247      963584   83  Linux
+
+Note: Copy the output to a text file. If you are using putty highlight the text and press Ctl-C (copy) and paste the out put to notepad.ext Ctl-X (paste).
+Highly recommended to expand the SD card first for the reason the next steps could lose data.
+
+3. Delete partition /dev/mmcblk0p3
+
+root@Galileo1:~# fdisk -u /dev/mmcblk0
+Command (m for help): d
+Partition number (1-4): 3
+
+Command (m for help): w
+The partition table has been altered!
+
+Calling ioctl() to re-read partition table.
+
+WARNING: Re-reading the partition table failed with error 16: Device or resource busy.
+The kernel still uses the old table. The new table will be used at
+the next reboot or after you run partprobe(8) or kpartx(8)
+Syncing disks.
+
+4. Create a new partition with same start point in step 2 (1198080)
+
+root@Galileo1:~# fdisk -u /dev/mmcblk0
+
+Command (m for help): n
+Partition type:
+   p   primary (2 primary, 0 extended, 2 free)
+   e   extended
+Select (default p): p
+Partition number (1-4, default 3): 3
+First sector (194560-30867455, default 194560): 1198080
+Last sector, +sectors or +size{K,M,G} (1198080-30867455, default 30867455):
+Using default value 30867455
+
+Command (m for help): w
+The partition table has been altered!
+
+Calling ioctl() to re-read partition table.
+
+WARNING: Re-reading the partition table failed with error 16: Device or resource busy.
+The kernel still uses the old table. The new table will be used at
+the next reboot or after you run partprobe(8) or kpartx(8)
+Syncing disks.
+
+5. Tell the linux kernel to reprobe the file system.
+
+root@Galileo1:~# partx /dev/mmcblk0
+
+6. Reboot the Intel Galileo
+
+root@Galileo1:~# reboot
+
+7. Resize the new file system
+
+root@Galileo1:~# resize2fs /dev/mmcblk0p3
+resize2fs 1.42.5 (29-Jul-2012)
+Filesystem at /dev/mmcblk0p3 is mounted on /; on-line resizing required
+old_desc_blocks = 1, new_desc_blocks = 1
+Performing an on-line resize of /dev/mmcblk0p3 to 3708672 (4k) blocks.
+The filesystem on /dev/mmcblk0p3 is now 3708672 blocks long.
+
+8. Verify the new file system
+
+root@Galileo1:~# df -h
+Filesystem      Size  Used Avail Use% Mounted on
+rootfs           14G  578M   13G   5% /
+udev             10M     0   10M   0% /dev
+tmpfs            24M  120K   24M   1% /run
+/dev/mmcblk0p3   14G  578M   13G   5% /
+tmpfs           5.0M     0  5.0M   0% /run/lock
+tmpfs            47M     0   47M   0% /run/shm
+
+9. To be extra cautious reboot linux one more time so linux kernel will look at the new disk and run check disk if necessary.
+
+# reboot
+
+
+Related articles and links:
+
+http://unix.stackexchange.com/questions/67095/how-can-i-expand-ext4-partition-size-on-debian
+9 Linux Parted Command Examples – mkpart, mkpartfs, resize partitions - http://www.thegeekstuff.com/2011/09/parted-command-examples/
+extending a partition by resize2fs - http://unix.stackexchange.com/questions/76101/extending-a-partition-by-resize2fs
+http://sourceforge.net/p/galileodebian/wiki/DebianOnGalileo/
+http://geekpeek.net/resize-filesystem-fdisk-resize2fs/
+http://clonezilla.org/
+http://www.tecmint.com/linux-disk-cloning-tools/
+https://packages.debian.org/wheezy/partimage
+https://packages.debian.org/wheezy/partclone
+http://www.binarytides.com/linux-command-check-disk-partitions/
