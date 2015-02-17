@@ -1,0 +1,31 @@
+1. Install dsh
+
+# apt-get install -y dsh
+
+2. DSH config
+
+# nano /etc/dsh/dsh.conf
+
+Change 
+remoteshell =rsh
+
+To
+
+remoteshell =ssh
+
+3. Add machines to list
+
+# nano /etc/dsh/machines.list
+
+4. Run simple command like 
+
+# dsh –aM –c uptime
+
+5. Install simple program screen
+
+# dsh –aM –c 'apt-get install -y screen'
+
+
+Reference links:
+
+http://www.tecmint.com/using-dsh-distributed-shell-to-run-linux-commands-across-multiple-machines/

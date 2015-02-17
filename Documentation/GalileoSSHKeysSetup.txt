@@ -1,0 +1,77 @@
+May need to update resolve file if name resolution is not working
+
+# nano /etc/resolve
+192.168.1.10    G1
+192.168.1.11    G2
+192.168.1.12    G3
+192.168.1.13    G4
+
+############################################################################################
+$ mkdir ~/.ssh
+$ chmod 0700 ~/.ssh
+$ touch ~/.ssh/authorized_keys
+$ chmod 0644 ~/.ssh/authorized_keys
+$ cd ~/.ssh
+
+$ ssh-keygen -t rsa -C "mdelgert@G1"
+$ ssh-keygen -t rsa -C "mdelgert@G2"
+$ ssh-keygen -t rsa -C "mdelgert@G3"
+$ ssh-keygen -t rsa -C "mdelgert@G4"
+
+$ mv id_rsa.pub id_rsa_MdelgertG1.pub
+$ mv id_rsa.pub id_rsa_MdelgertG2.pub
+$ mv id_rsa.pub id_rsa_MdelgertG3.pub
+$ mv id_rsa.pub id_rsa_MdelgertG4.pub
+
+$ scp -p id_rsa_MdelgertG1.pub mdelgert@G1:~/.ssh
+$ scp -p id_rsa_MdelgertG1.pub mdelgert@G2:~/.ssh
+$ scp -p id_rsa_MdelgertG1.pub mdelgert@G3:~/.ssh
+$ scp -p id_rsa_MdelgertG1.pub mdelgert@G4:~/.ssh
+
+$ cat id_rsa_MdelgertG1.pub >> ~/.ssh/authorized_keys
+$ cat id_rsa_MdelgertG2.pub >> ~/.ssh/authorized_keys
+$ cat id_rsa_MdelgertG3.pub >> ~/.ssh/authorized_keys
+$ cat id_rsa_MdelgertG4.pub >> ~/.ssh/authorized_keys
+
+Verify ssh works on each host
+
+$ ssh -v G1 -l mdelgert
+$ ssh -v G2 -l mdelgert
+$ ssh -v G3 -l mdelgert
+$ ssh -v G4 -l mdelgert
+
+############################################################################################
+
+
+
+
+############################################################################################
+# ssh-keygen -t rsa -C "root@G1"
+# ssh-keygen -t rsa -C "root@G2"
+# ssh-keygen -t rsa -C "root@G3"
+# ssh-keygen -t rsa -C "root@G4"
+
+# mv id_rsa.pub id_rsa_RootG1.pub
+# mv id_rsa.pub id_rsa_RootG2.pub
+# mv id_rsa.pub id_rsa_RootG3.pub
+# mv id_rsa.pub id_rsa_RootG4.pub
+
+# scp -p id_rsa_RootG1.pub root@G1:~/.ssh
+# scp -p id_rsa_RootG2.pub root@G2:~/.ssh
+# scp -p id_rsa_RootG3.pub root@G3:~/.ssh
+# scp -p id_rsa_RootG4.pub root@G4:~/.ssh
+
+# cat id_rsa_RootG1.pub >> ~/.ssh/authorized_keys
+# cat id_rsa_RootG2.pub >> ~/.ssh/authorized_keys
+# cat id_rsa_RootG3.pub >> ~/.ssh/authorized_keys
+# cat id_rsa_RootG4.pub >> ~/.ssh/authorized_keys
+
+# ssh -v G1 -l root
+# ssh -v G2 -l root
+# ssh -v G3 -l root
+# ssh -v G4 -l root
+############################################################################################
+
+Reference link:
+
+https://www.digitalocean.com/community/tutorials/how-to-create-ssh-keys-with-putty-to-connect-to-a-vps

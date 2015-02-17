@@ -1,0 +1,45 @@
+Set up after first boot
+
+1. Expand SD card
+
+2. Update user and root password
+
+3. Add additional accounts
+
+# adduser NewLogin
+
+4. Remove accounts
+
+You may want to delete the user account
+
+deluser -force –remove-all-files user
+
+5. Change hostname
+
+# nano /etc/hostname
+
+# hostname NewHostName
+
+6. May want to verify network settings
+
+# nano /etc/resolv.conf
+# nano /etc/hosts
+# nano /etc/network/interfaces
+
+7. Good time to verify date and hardware clock
+
+# date
+# hwclock
+
+8. Update system
+
+# apt-get update
+# apt-get dist-upgrade
+
+# aptitude update
+# aptitude full-upgrade
+
+
+Debian GNU/Linux System Administrator's Manual Chapter 8 - Managing User Accounts - https://www.debian.org/doc/manuals/system-administrator/ch-sysadmin-users.html
+Debian GNU/Linux System Administrator's Manual  Chapter 16 - Time - https://www.debian.org/doc/manuals/system-administrator/ch-sysadmin-time.html
+The Debian GNU/Linux Chapter 9 - Keeping your Debian system up-to-date - https://www.debian.org/doc/manuals/debian-faq/ch-uptodate.en.html

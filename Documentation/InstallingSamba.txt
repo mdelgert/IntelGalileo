@@ -1,0 +1,38 @@
+1. Install samba
+
+# apt-get install -y samba 
+
+# apt-get install -y samba-client 
+
+# apt-get install -y cifs-utils
+
+# mkdir /SambaShare
+
+# cp /etc/samba/smb.conf /etc/samba/smb.conf.bk
+# nano /etc/samba/smb.conf
+
+###########################################################################################
+[global]
+workgroup = WORKGROUP
+server string = %h server
+log file = /var/log/samba/log.%m
+max log size = 1000
+security = User
+
+[Root]
+path = /
+valid users = root
+read only = No
+create mask = 0700
+directory mask = 0700
+
+###########################################################################################
+
+# Make sure to run command "# smbpasswd -a SambaUserName" - http://linuxpoison.blogspot.no/2008/07/quick-and-simple-samba-configuration.html
+
+# service samba restart
+
+Reference links:
+http://linuxpoison.blogspot.no/2008/07/quick-and-simple-samba-configuration.html
+https://wiki.debian.org/SambaServerSimple
+
