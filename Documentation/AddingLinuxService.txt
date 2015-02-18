@@ -1,5 +1,49 @@
+1. Creating a linux service
 
+# nano /etc/init.d/TestService
 
+#! /bin/sh
+# /etc/init.d/TestService
+
+# Test service
+case "$1" in
+  start)
+    echo "TestService Started $(date)" >> /tmp/TestService.log
+	echo "TestService Started"
+    ;;
+  stop)
+    echo "TestService Stopped $(date)" >> /tmp/TestService.log
+    echo "TestService Stopped"
+    ;;
+  *)
+    echo "Usage: /etc/init.d/TestService {start|stop}"
+    exit 1
+    ;;
+esac
+
+exit 0
+
+2. Make file executable
+
+# chmod 755 /etc/init.d/TestService
+
+3. Update linux services
+
+# update-rc.d TestService defaults
+
+4. Verify service is in list
+
+# service --status-all
+
+5. Start service
+
+# service TestService start
+# service TestService stop
+
+6. Deleting the service
+
+# update-rc.d -f TestService remove
+# rm /etc/init.d/TestService
 
 Reference links:
 

@@ -1,0 +1,37 @@
+# nano /etc/init.d/SyslogWeb
+
+# chmod +x /usr/local/share/syslogng-web
+
+#!/bin/sh
+
+case "$1" in
+  start)
+  node /usr/local/share/syslogng-web/app.js
+  ;;
+
+  stop)
+  node /usr/local/share/syslogng-web/app.js
+  ;;
+esac
+
+exit 0
+
+# chmod 755 /etc/init.d/SyslogWeb
+
+# update-rc.d SyslogWeb defaults
+
+# service --status-all
+
+# service SyslogWeb start
+
+//To remove the service
+
+# update-rc.d -f SyslogWeb remove
+
+# rm /etc/init.d/SyslogWeb
+
+The correct way is something like this could not get working at this time
+
+Running a Node.js process on Debian as an init.d Service - https://thomashunter.name/blog/running-a-node-js-process-on-debian-as-an-init-d-service/
+
+https://github.com/foreverjs/forever#using-forever-from-the-command-line
