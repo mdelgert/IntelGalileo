@@ -1,0 +1,44 @@
+
+1. Open crontab
+
+# crontab -e
+
+2. Add cron job
+
+
+
+Every minute
+
+*/1 * * * * /Scripts/WriteLog.sh 
+
+hourly
+
+0 * * * * /Scripts/Backup1
+
+daily
+
+40 09 * * * /Scripts/Backup1
+
+weekly
+
+00 1 * * 6 /Scripts/WriteLog.sh 
+
+monthly
+
+00 2 1 * * /Scripts/WriteLog.sh 
+
+* * * * * command to be executed
+- - - - -
+| | | | |
+| | | | ----- Day of week (0 - 7) (Sunday=0 or 7)
+| | | ------- Month (1 - 12)
+| | --------- Day of month (1 - 31)
+| ----------- Hour (0 - 23)
+------------- Minute (0 - 59)
+
+Related links:
+
+http://www.cyberciti.biz/faq/how-do-i-add-jobs-to-cron-under-linux-or-unix-oses/
+http://askubuntu.com/questions/2368/how-do-i-set-up-a-cron-job
+https://help.ubuntu.com/community/CronHowto
+http://www.thesitewizard.com/general/set-cron-job.shtml

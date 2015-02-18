@@ -1,0 +1,24 @@
+To see running processes 
+
+# top
+
+# pidof SyslogWeb
+
+or
+
+# ps aux | grep SyslogWeb
+
+root@G1:~# ps aux | grep SyslogWeb
+root      2303  0.0  0.2   1852   488 ?        S    01:46   0:00 /bin/sh /etc/init.d/SyslogWeb start
+root      2726  0.0  0.2   1944   624 pts/1    S+   08:24   0:00 grep SyslogWeb
+
+
+# ps aux | grep node
+
+root@G1:~# ps aux | grep node
+root      2304  1.3 20.6  95060 48960 ?        Sl   01:46   5:18 node /usr/local/share/syslogng-web/app.js
+root      2728  0.0  0.2   1944   620 pts/1    S+   08:25   0:00 grep node
+
+# kill 2304
+
+http://www.cyberciti.biz/faq/kill-process-in-linux-or-terminate-a-process-in-unix-or-linux-systems/
