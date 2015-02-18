@@ -1,0 +1,111 @@
+1. Install node.js
+
+2. Install syslog-ng
+
+# apt-get install syslog-ng
+
+3. Backup config files
+
+cp /etc/syslog-ng/syslog-ng.conf /etc/syslog-ng/syslog-ng.conf.bk
+
+cp /etc/syslog-ng/modules.conf /etc/syslog-ng/modules.conf.bk
+
+cp /etc/syslog-ng/conf.d/00load-mongodb.conf /etc/syslog-ng/conf.d/00load-mongodb.conf.bk
+
+4. Install MongoDB
+
+# aptitude install mongodb-server
+
+5. Create the database
+
+# mongo syslog
+# db.createCollection( "messages", { capped: true, size: 100000000 } )
+# exit
+
+5. Clone the repo
+
+# cd /usr/local/share/
+
+# git clone https://github.com/nlaplante/syslogng-web.git
+# cd syslogng-web
+
+6. Install webui
+
+# npm install
+# npm install -g bower
+
+non su user
+
+$ bower install
+
+su user
+
+# bower --allow-root install
+
+7. Test install from command line
+
+# node app.js
+
+8. Add config settings
+
+# nano /etc/syslog-ng/syslog-ng.conf
+
+##############################################################
+destination mongodb { mongodb(); };
+##############################################################
+
+#############################################################
+log { source(s_src); destination(mongodb); };
+#############################################################
+
+# nano /etc/syslog-ng/modules.conf
+
+@module afmongodb
+
+
+http://www.balabit.com/sites/default/files/documents/syslog-ng-pe-4.0-guides/en/syslog-ng-pe-v4.0-guide-admin-en/html/configure_clients.html
+
+Setup client
+
+
+
+###############################################################
+
+Testing syslog
+
+# logger 'Hello world system logger'
+
+###############################################################
+
+
+
+###############################################################
+piping a nmap scan to syslog
+
+# nmap 192.168.1.0/24 | logger
+
+# nmap -v 192.168.1.0/24 | logger
+
+###############################################################
+
+###############################################################
+http://www.querymongo.com/
+http://www.hacksparrow.com/the-mongodb-tutorial.html
+###############################################################
+# mongo syslog
+# db.messages.find();
+###############################################################
+
+https://github.com/nlaplante/syslogng-web
+http://www.debianhelp.co.uk/syslogngweb.htm
+https://www.balabit.com/sites/default/files/documents/syslog-ng-ose-3.3-guides/en/syslog-ng-ose-v3.3-guide-admin-en/html/configuring_destinations_mongodb.html
+https://czanik.blogs.balabit.com/2013/08/syslog-ng-web-a-simple-and-fast-log-viewer/
+http://asylum.madhouse-project.org/projects/syslog-ng/mongodb/
+http://anton.dollmaier.name/2013/11/23/storing-syslogs-mongodb-syslog-ng/
+http://riemann.io/index.html
+https://github.com/aphyr/riemann
+
+Other log systems to look at 
+
+http://riemann.io/index.html
+http://jasonwilder.com/blog/2013/07/16/centralized-logging-architecture/

@@ -1,0 +1,24 @@
+
+1. Manual mount
+
+# mkdir /mnt/G2
+
+# mount -t cifs //G2/Root /mnt/G2 -o username=root,password=root 
+
+2. Disconnect mount
+
+# umount /mnt/G2
+
+3. Mounting permanently by editing /etc/fstab file, below is the fstab file entry example
+
+# nano /etc/fstab
+
+//G2/Root  /mnt/G2  cifs  username=root,password=root
+
+Test fstab 
+
+# mount -a
+
+Reference links:
+http://www.linuxnix.com/2009/09/8-ways-to-mount-smbfs-samba-file-system-in-linux.html
+https://wiki.ubuntu.com/MountWindowsSharesPermanently

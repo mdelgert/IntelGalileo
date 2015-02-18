@@ -1,0 +1,6 @@
+# UNCONFIGURED FSTAB FOR BASE SYSTEM
+//G2/Root  /mnt/G2  cifs  username=root,password=password
+//G3/Root  /mnt/G3  cifs  username=root,password=password
+//G4/Root  /mnt/G4  cifs  username=root,password=password
+//NAS1/mdelgert /mnt/NAS1 cifs username=mdelgert,password=password
+//NAS2/Data /mnt/NAS2 cifs username=mdelgert,password=password

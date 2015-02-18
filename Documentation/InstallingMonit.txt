@@ -1,0 +1,38 @@
+1. Install the monit service
+
+# apt-get install monit
+
+2. Backup config file
+
+# cp /etc/monit/monitrc /etc/monit/monitrc.bk
+
+Web service
+
+set httpd port 2812
+#    use address 12.34.56.789  # only accept connection from localhost
+#    allow 0.0.0.0/0.0.0.0        # allow localhost to connect to the server and
+allow 192.168.1.0/24
+allow admin:monit      # require user 'admin' with password 'monit'
+
+
+monit reload
+
+
+Examples
+
+  check host G1 with address 192.168.1.10
+    if failed icmp type echo count 3 with timeout 3 seconds then alert
+
+  check host G2 with address 192.168.1.11
+    if failed icmp type echo count 3 with timeout 3 seconds then alert
+
+  check host G3 with address 192.168.1.12
+    if failed icmp type echo count 3 with timeout 3 seconds then alert
+
+  check host G4 with address 192.168.1.13
+    if failed icmp type echo count 3 with timeout 3 seconds then alert
+
+
+
+https://www.debian-administration.org/article/269/Monitor_Debian_servers_with_monit
+https://www.digitalocean.com/community/tutorials/how-to-install-and-configure-monit
