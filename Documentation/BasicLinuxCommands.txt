@@ -1,0 +1,18 @@
+Moving directories
+# cd /DirectoryName
+
+Deleting a file
+# rm FileName
+
+Deleting a folder
+# rm -rf FolderName
+
+Copying a file
+# cp FileName NewFileName
+
+Mounting system mounts
+# mount -a
+
+Un mounting system mounts 
+# umount-a
+

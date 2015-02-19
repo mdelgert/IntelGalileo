@@ -1,0 +1,181 @@
+1. Install unison
+
+# apt-get install unison
+
+or 
+
+# apt-get install unison-all
+
+2. Test unison
+
+# unison /Scripts ssh://G2//Scripts
+
+3. Create config file
+
+# nano /root/.unison/default.prf
+
+# Unison preferences file
+root = /Scripts
+root = ssh://G2//Scripts
+auto=true
+batch=true
+
+4. To sync folder across multiple servers and additional preference files
+
+# nano /root/.unison/G3.prf
+
+# Unison preferences file
+root = /Scripts
+root = ssh://G3//Scripts
+auto=true
+batch=true
+
+# nano /root/.unison/G4.prf
+
+# Unison preferences file
+root = /Scripts
+root = ssh://G4//Scripts
+auto=true
+batch=true
+
+5. Test preference file
+
+# unison G2.prf
+# unison G3.prf
+# unison G4.prf
+
+6. If syncing multiple locations you can create a script file
+
+# nano /Scripts/G1/UnisonSyncScripts.sh
+
+# Example unison sync script
+
+echo "Unison sync /Scripts on server G2 begin"
+unison G2.prf
+echo "Unison sync /Scripts on server G2 end"
+
+echo "Unison sync /Scripts on server G3 begin"
+unison G3.prf
+echo "Unison sync /Scripts on server G3 end"
+
+echo "Unison sync /Scripts on server G4 begin"
+unison G4.prf
+echo "Unison sync /Scripts on server G2 end"
+
+
+
+
+# chmod +x /Scripts/G1/UnisonSyncScripts.sh
+
+7. Test your script
+
+./UnisonSyncScripts.sh
+
+8. Add syncing to cron job
+
+# crontab -e
+
+# Example sync every minute minutes
+
+*/1 * * * * /Scripts/G1/UnisonSyncScripts.sh &> /dev/null
+
+# Example sync every five minutes
+
+*/5 * * * * /Scripts/G1/UnisonSyncScripts.sh &> /dev/null
+
+Related articles:
+
+https://packages.debian.org/wheezy/unison
+
+http://www.softprayog.in/tutorials/synchronizing-files-between-multiple-computers-using-unison
+
+https://www.howtoforge.com/setting-up-unison-file-synchronization-between-two-servers-on-debian-squeeze
+
+# Roots of the synchronization
+root = /var/www
+root = ssh://192.168.0.101//var/www
+
+# Paths to synchronize
+#path = current
+#path = common
+#path = .netscape/bookmarks.html
+
+# Some regexps specifying names and paths to ignore
+#ignore = Path stats    ## ignores /var/www/stats
+#ignore = Path stats/*  ## ignores /var/www/stats/*
+#ignore = Path */stats  ## ignores /var/www/somedir/stats, but not /var/www/a/b/c/stats
+#ignore = Name *stats   ## ignores all files/directories that end with "stats"
+#ignore = Name stats*   ## ignores all files/directories that begin with "stats"
+#ignore = Name *.tmp    ## ignores all files with the extension .tmp
+
+#          When set to true, this flag causes the user interface to skip
+#          asking for confirmations on non-conflicting changes. (More
+#          precisely, when the user interface is done setting the
+#          propagation direction for one entry and is about to move to the
+#          next, it will skip over all non-conflicting entries and go
+#          directly to the next conflict.)
+auto=true
+
+#          When this is set to true, the user interface will ask no
+#          questions at all. Non-conflicting changes will be propagated;
+#          conflicts will be skipped.
+batch=true
+
+#          !When this is set to true, Unison will request an extra
+#          confirmation if it appears that the entire replica has been
+#          deleted, before propagating the change. If the batch flag is
+#          also set, synchronization will be aborted. When the path
+#          preference is used, the same confirmation will be requested for
+#          top-level paths. (At the moment, this flag only affects the
+#          text user interface.) See also the mountpoint preference.
+confirmbigdel=true
+
+#          When this preference is set to true, Unison will use the
+#          modification time and length of a file as a `pseudo inode
+#          number' when scanning replicas for updates, instead of reading
+#          the full contents of every file. Under Windows, this may cause
+#          Unison to miss propagating an update if the modification time
+#          and length of the file are both unchanged by the update.
+#          However, Unison will never overwrite such an update with a
+#          change from the other replica, since it always does a safe
+#          check for updates just before propagating a change. Thus, it is
+#          reasonable to use this switch under Windows most of the time
+#          and occasionally run Unison once with fastcheck set to false,
+#          if you are worried that Unison may have overlooked an update.
+#          The default value of the preference is auto, which causes
+#          Unison to use fast checking on Unix replicas (where it is safe)
+#          and slow checking on Windows replicas. For backward
+#          compatibility, yes, no, and default can be used in place of
+#          true, false, and auto. See the section "Fast Checking" for more
+#          information.
+fastcheck=true
+
+#          When this flag is set to true, the group attributes of the
+#          files are synchronized. Whether the group names or the group
+#          identifiers are synchronizeddepends on the preference numerids.
+group=true
+
+#          When this flag is set to true, the owner attributes of the
+#          files are synchronized. Whether the owner names or the owner
+#          identifiers are synchronizeddepends on the preference
+#          extttnumerids.
+owner=true
+
+#          Including the preference -prefer root causes Unison always to
+#          resolve conflicts in favor of root, rather than asking for
+#          guidance from the user. (The syntax of root is the same as for
+#          the root preference, plus the special values newer and older.)
+#          This preference is overridden by the preferpartial preference.
+#          This preference should be used only if you are sure you know
+#          what you are doing!
+prefer=newer
+
+#          When this preference is set to true, the textual user interface
+#          will print nothing at all, except in the case of errors.
+#          Setting silent to true automatically sets the batch preference
+#          to true.
+silent=true
+
+#          When this flag is set to true, file modification times (but not
+#          directory modtimes) are propagated.
+times=true

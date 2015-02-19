@@ -1,0 +1,40 @@
+Rsync local example
+
+# rsync -avz /Scripts /Backups
+
+Rsync to mounted linux network drive
+
+# rsync -avz /Scripts /mnt/G2
+
+Rsync from windows share to local 
+
+# rsync -avz /mnt/WRK02/Source/Git/GitHub/Marlin /Backups
+
+Rsync from windows share to mounted remote share
+
+# rsync -avz /mnt/WRK02/Source/Git/GitHub/Marlin /mnt/NAS2/Source
+
+Rsync remove permissions
+# rsync -rvz /mnt/WRK02/Source/Git/GitHub/Marlin /mnt/NAS2/Source
+
+Rsync using ssh
+
+# rsync -avz /Scripts root@G2:/Scripts
+
+# rsync -avz /Scripts root@G2:/
+
+# rsync -avz /Scripts root@G4:/
+
+http://www.tecmint.com/rsync-local-remote-file-synchronization-commands/
+
+usage: 
+
+rsync options source destination
+
+Some common options used with rsync commands
+
+ -v : verbose
+ -r : copies data recursively (but don’t preserve timestamps and permission while transferring data
+ -a : archive mode, archive mode allows copying files recursively and it also preserves symbolic links, file permissions, user & group ownerships and timestamps
+ -z : compress file data
+ -h : human-readable, output numbers in a human-readable format

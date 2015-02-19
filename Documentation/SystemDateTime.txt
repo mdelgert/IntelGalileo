@@ -1,0 +1,16 @@
+To see current date
+# date
+
+To see hardware clock
+
+# hwclock
+
+Sync hardware clock with system clock
+
+# hwclock -w --localtime
+
+To change time zone
+
+# dpkg-reconfigure tzdata
+
+Debian GNU/Linux System Administrator's Manual Chapter 16 - Time - https://www.debian.org/doc/manuals/system-administrator/ch-sysadmin-time.html

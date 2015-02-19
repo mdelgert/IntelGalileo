@@ -1,0 +1,73 @@
+When testing samba shares in Windows sometimes the connections will remain open after disconnecting from a network drive
+
+You can reboot your computer 
+
+or from command prompt run
+
+C:\net use
+
+This will display connected network shares.
+
+To disconnect all shares.
+
+C:\net use * /delete /y
+
+Related articles:
+
+http://stackoverflow.com/questions/13284106/why-net-use-delete-does-not-work-but-waits-for-confirmation-in-my-powershel
+
+http://ss64.com/nt/net_use.html
+
+https://technet.microsoft.com/en-us/library/bb490717.aspx
+
+Net use
+
+Connects a computer to or disconnects a computer from a shared resource, or displays information about computer connections. The command also controls persistent net connections. Used without parameters, net use retrieves a list of network connections.
+Syntax
+
+net use [{DeviceName | *}] [\\ComputerName\ShareName[\volume]] [{Password | *}]] [/user:[DomainName\]UserName] [/user:[DottedDomainName\]UserName] [/user: [UserName@DottedDomainName] [/savecred] [/smartcard] [{/delete | /persistent:{yes | no}}]
+net use [DeviceName [/home[{Password | *}] [/delete:{yes | no}]]
+net use [/persistent:{yes | no}]
+
+Parameters
+DeviceName   : Assigns a name to connect to the resource or specifies the device to be disconnected. There are two kinds of device names: disk drives (that is, D: through Z:) and printers (that is, LPT1: through LPT3:). Type an asterisk (*) instead of a specific device name to assign the next available device name.
+\\ ComputerName \ ShareName   : Specifies the name of the server and the shared resource. If ComputerName contains spaces, use quotation marks around the entire computer name from the double backslash (\\) to the end of the computer name (for example, "\\Computer Name\Share Name"). The computer name can be from 1 to 15 characters long.
+\ volume   : Specifies a NetWare volume on the server. You must have Client Service for NetWare installed and running to connect to NetWare servers.
+Password   : Specifies the password needed to access the shared resource. Type an asterisk (*) to produce a prompt for the password. The password is not displayed when you type it at the password prompt.
+/user   : Specifies a different user name with which the connection is made.
+DomainName   : Specifies another domain. If you omit DomainName, net use uses the current logged on domain.
+UserName   : Specifies the user name with which to log on.
+DottedDomainName   : Specifies the fully-qualified domain name for the domain where the user account exists.
+/savecred   : Stores the provided credentials for reuse.
+/smartcard   : Specifies the network connection is to use the credentials on a smart card. If multiple smart cards are available, you are asked to specify the credential.
+/delete   : Cancels the specified network connection. If you specify the connection with an asterisk (*), all network connections are canceled.
+/persistent: { yes | no } : Controls the use of persistent network connections. The default is the setting used last. Deviceless connections are not persistent. Yes saves all connections as they are made, and restores them at next logon. No does not save the connection being made or subsequent connections. Existing connections are restored at the next logon. Use /delete to remove persistent connections.
+/home   : Connects a user to the home directory.
+net help   command   : Displays help for the specified net command.
+
+Connecting and disconnecting from a network resource
+Use net use to connect to and disconnect from a network resource, and to view your current connections to network resources. You cannot disconnect from a shared directory if you use it as your current drive or an active process is using it.
+Viewing connection information
+To view information about a connection, you can do either of the following:
+Type net use DeviceName to get information about a specific connection.
+Type net use to get a list of all the computer's connections.
+Using deviceless connections
+Deviceless connections are not persistent.
+Connecting to NetWare servers
+After you install and run Client Service for NetWare, you can connect to a NetWare server on a Novell network. Use the same syntax that you use to connect to a Windows Networking server, except you must include the volume you to which you want to connect.
+Using quotation marks
+If the ServerName that you supply contains spaces, use quotation marks around the text (that is, "Server Name"). If you omit quotation marks, an error message appears.
+
+Examples
+To assign the disk-drive device name E: to the Letters shared directory on the \\Financial server, type:
+net use e: \\financial\letters 
+To assign (map) the disk-drive device name M: to the directory Mike within the Letters volume on the \\Financial NetWare server, type:
+net use m: \\financial\letters\mike 
+To connect the user identifier Dan as if the connection were made from the Accounts domain, type:
+net use d:\\server\share /user:Accounts\Dan 
+To disconnect from the \\Financial\Public directory, type:
+net use f: \\financial\public /delete 
+To connect to the resource memos shared on the \\Financial 2 server, type:
+net use k: "\\financial 2" \memos 
+To restore the current connections at each logon, regardless of future changes, type:
+net use /persistent:yes 

@@ -5,7 +5,7 @@
 
 2. Add cron job
 
-
+45 17 * * * /Scripts/G1/G1Backup1.sh
 
 Every minute
 
