@@ -36,7 +36,15 @@ monthly
 | ----------- Hour (0 - 23)
 ------------- Minute (0 - 59)
 
+How to kill a cronjob - http://superuser.com/questions/232144/how-to-stop-a-currently-running-cron-job
+
+ps -ax|grep [your_process_file]
+kill -HUP 1234
+
+
 Related links:
+
+Crontab Log: How to Log the Output of My Cron Script - http://www.thegeekstuff.com/2012/07/crontab-log/
 
 http://www.cyberciti.biz/faq/how-do-i-add-jobs-to-cron-under-linux-or-unix-oses/
 http://askubuntu.com/questions/2368/how-do-i-set-up-a-cron-job

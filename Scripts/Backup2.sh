@@ -8,7 +8,7 @@
 ############################################################################################################
 
 # Define nas name
-nas_name="NAS2"
+nas_name="NAS1"
 
 # Get host name
 hostname=$(hostname -s)

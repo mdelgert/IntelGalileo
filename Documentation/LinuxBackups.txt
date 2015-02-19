@@ -1,0 +1,9 @@
+Full system backup with rsync - https://wiki.archlinux.org/index.php/full_system_backup_with_rsync
+
+Basic Backup Script in BASH - http://www.linux.org/threads/basic-backup-script-in-bash.4213/
+
+Easy Automated Snapshot-Style Backups with Linux and Rsync - http://www.mikerubel.org/computers/rsync_snapshots/
+
+Backup script ( no question, just script ) - https://www.howtoforge.com/community/threads/backup-script-no-question-just-script.61008/
+
+Shell Scripts - https://help.ubuntu.com/lts/serverguide/backup-shellscripts.html
