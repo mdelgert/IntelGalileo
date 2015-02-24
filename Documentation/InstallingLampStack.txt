@@ -1,8 +1,22 @@
-# apt-get install apache2
 
+1. # apt-get install apache2
+2. # apt-get install mysql-server
+3. # mysql_secure_installation
+4. # apt-get install php5 php-pear php5-mysql
+5. # service apache2 restart
+6. # nano /var/www/info.php
+
+<?php
+phpinfo();
+?>
+
+7. Test PHP
+
+http://HostNameOrIP/info.php
 
 Reference Links:
 
+https://www.digitalocean.com/community/tutorials/how-to-install-linux-apache-mysql-php-lamp-stack-on-debian
+
 https://www.linode.com/docs/websites/lamp/lamp-server-on-debian-7-wheezy
 
-https://www.digitalocean.com/community/tutorials/how-to-install-linux-apache-mysql-php-lamp-stack-on-debian

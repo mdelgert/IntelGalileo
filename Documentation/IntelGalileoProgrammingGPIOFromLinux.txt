@@ -16,3 +16,5 @@ GPIO_SUS1 gpio3 GP LED - LED between Cypress CY8C9540A and RTC battery header
 Reference links:
 
 http://www.malinov.com/Home/sergey-s-blog/intelgalileo-programminggpiofromlinux
+
+http://tldp.org/HOWTO/Bash-Prog-Intro-HOWTO-7.html

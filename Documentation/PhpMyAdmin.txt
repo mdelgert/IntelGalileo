@@ -1,0 +1,84 @@
+1. # apt-get install phpmyadmin
+
+2. You may need to add this for other linux distros for Debian you can skip this step
+
+# nano /etc/apache2/apache2.conf
+
+Add the following to end of config file
+
+###############################################
+Include /etc/phpmyadmin/apache.conf
+##############################################
+
+3. # service apache2 restart
+
+4. Login and test
+
+http://HostnameOrIP/phpmyadmin
+
+5. Secure PhpMyAdmin
+
+# nano /etc/phpmyadmin/apache.conf 
+
+Add AllowOverride All
+
+------------Begin-------------------
+
+<Directory /usr/share/phpmyadmin>
+        Options FollowSymLinks
+        DirectoryIndex index.php
+        AllowOverride All
+        <IfModule mod_php5.c>
+                AddType application/x-httpd-php .php
+
+                php_flag magic_quotes_gpc Off
+                php_flag track_vars On
+                php_flag register_globals Off
+                php_admin_flag allow_url_fopen Off
+                php_value include_path .
+                php_admin_value upload_tmp_dir /var/lib/phpmyadmin/tmp
+                php_admin_value open_basedir /usr/share/phpmyadmin/:/etc/phpmyadmin/:/var/lib/phpmyadmin/
+        </IfModule>
+
+</Directory>
+
+------------End-------------------------
+
+# mkdir /ApachePasswords
+# cd /ApachePasswords
+# htpasswd -c /ApachePasswords/.htpasswd root
+
+# nano /usr/share/phpmyadmin/.htaccess
+
+Paste the following
+
+------------Begin-------------------
+AuthType Basic
+AuthName "Restricted Files"
+AuthUserFile /ApachePasswords/.htpasswd
+Require valid-user
+------------End-------------------------
+
+# service apache2 restart
+
+6. Login and test
+
+http://HostnameOrIP/phpmyadmin
+
+In this example we login as user root
+
+Note: If getting this error "apache2 could not reliably determine the server's fully qualified domain name"
+
+This can happen if IPV6 enabled and you are not using.
+
+# nano /etc/hosts
+
+comment out IPV6 related entries
+
+# service networking restart
+
+
+Related links:
+
+https://www.digitalocean.com/community/tutorials/how-to-install-and-secure-phpmyadmin-on-debian-7 - How To Install and Secure phpMyAdmin on Debian 7
+http://www.phpmyadmin.net/home_page/index.php

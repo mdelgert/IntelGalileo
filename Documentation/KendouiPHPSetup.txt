@@ -1,0 +1,16 @@
+# apt-get install sqlite3
+# apt-get install php5-sqlite
+
+
+
+To run kendoui demos need to make web directory read and write 
+
+Related links:
+
+https://code.google.com/p/northwindextended/downloads/detail?name=Northwind.MySQL5.sql
+
+https://github.com/telerik/kendo-examples-php
+
+http://docs.telerik.com/kendo-ui/php/introduction
+
+http://serverfault.com/questions/57596/why-do-i-get-sqlite-error-unable-to-open-database-file

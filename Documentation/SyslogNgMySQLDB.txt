@@ -1,0 +1,44 @@
+
+# aptitude install syslog-ng-core syslog-ng-mod-sql
+
+Got to PhpMySQLAdmin
+
+http://YoutHostOrIP/phpmyadmin
+
+Create a database
+
+SyslogNg
+
+Go to database and create a user
+
+LogUser
+
+CREATE TABLE `logs` (
+`host` varchar(32) DEFAULT NULL,
+`facility` varchar(10) DEFAULT NULL,
+`priority` varchar(10) DEFAULT NULL,
+`level` varchar(10) DEFAULT NULL,
+`tag` varchar(10) DEFAULT NULL,
+`datetime` datetime DEFAULT NULL,
+`program` varchar(15) DEFAULT NULL,
+`msg` text,
+`seq` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+PRIMARY KEY (`seq`),
+KEY `host` (`host`),
+KEY `program` (`program`),
+KEY `datetime` (`datetime`),
+KEY `priority` (`priority`),
+KEY `facility` (`facility`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+If Syslog-NG exits (or logs in /var/log/syslog) an error message like “no such file“, it is missing the DBI database drivers. For Debian Wheezy, we install them with the following command:
+
+# aptitude install libdbi1 libdbd-mysql
+
+# service syslog-ng restart
+
+Related links:
+
+http://anton.dollmaier.name/2013/05/10/syslog-host-mit-syslog-ng-und-mysql/
+
+http://www.balabit.com/sites/default/files/documents/syslog-ng-ose-3.3-guides/en/syslog-ng-ose-v3.3-guide-admin-en/html/configuring_destinations_sql.html
