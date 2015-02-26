@@ -1,0 +1,53 @@
+To see installed mono version 
+
+# mono -V
+
+Installing mod-mono
+#####################################################################################
+
+# apt-get install mono-apache-server2 libapache2-mod-mono libmono-i18n2.0-cil
+
+# apt-cache search xsp
+
+Note: if instlation hanges restrat apache2
+
+# service apache2 restart
+
+#####################################################################################
+
+Installing mono-xsp
+
+# apt-get install mono-xsp4 
+
+# apt-get install mono-xsp4-base 
+
+# apt-get install asp.net-examples
+
+cd /usr.share.asp.net-demos
+
+xsp4
+
+http://192.168.1.10:9000/
+
+xsp2
+
+sudo chgrp -R www-data /var/www
+sudo chown -R www-data /var/www
+sudo chmod -R 755 /var/www
+
+
+Related articles:
+
+https://help.ubuntu.com/community/ModMono
+
+http://go-mono.com/config-mod-mono/Default.aspx
+
+http://www.anotherchris.net/asp-net-mvc/installing-mvc3-on-mono-with-ubuntu/
+
+http://r2d2.cc/2014/03/25/asp-net-mvc-under-linux-with-mono/
+
+https://www.linode.com/docs/websites/frameworks/build-aspnetmono-applications-with-modmono-and-apache-on-debian-5-lenny
+
+http://www.mono-project.com/docs/web/mod_mono/
+
+http://www.debianadmin.com/running-aspnet-applications-in-debian-and-ubuntu-using-xsp-and-mono.html
