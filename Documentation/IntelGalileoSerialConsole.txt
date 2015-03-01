@@ -1,0 +1,18 @@
+Using Serial Console
+
+Install terminal emulator software. For Windows I personally like PuTTY which in addition to serial terminal also includes SSH and telnet clients. On Linux it is possible to use GNU screen or minicom.
+Install driver for your USB to serial adapter.
+Connect everything together: USB to serial adapter to the computer and to the console cable you made, console cable to your Galileo board.
+Start terminal emulator, and configure it as follows: 115200 bps, 8 data bits, 1 stop bit, no parity, no flow control. You will also need to configure serial port name. If using USB to serial adapter with Windows open Device Manager, expand Ports section, and note the port name (COM<some_number>) your USB to serial converter is using. For example to start GNU screen use something like screen /dev/ttyS0 115200,cs8 (replace /dev/ttyS0 with the actual serial port device name).
+Power on your Galileo, you should see UEFI boot messages, followed by GRUB menu, followed by Linux boot messages.
+Login to Galileo's Linux system using root as user name. By default root account doesn't have any password, but I really recommend setting one especially if you will be connecting your Galileo to the network.
+
+Related Articles:
+
+http://www.malinov.com/Home/sergey-s-blog
+
+https://communities.intel.com/thread/46335
+
+https://communities.intel.com/message/208514#208514
+
+http://www.malinov.com/Home/sergey-s-blog/intelgalileo-addingwifi

@@ -1,0 +1,99 @@
+http://www.raspberrypi.org/forums/viewtopic.php?f=91&t=17702
+
+# aptitude install bridge-utils 
+ 
+# nano /etc/network/interfaces
+
+auto lo
+
+iface lo inet loopback
+
+iface eth0 inet manual
+
+auto wlan0
+iface wlan0 inet manual
+
+auto br0
+iface br0 inet dhcp
+      bridge_ports wlan0 eth0
+      bridge_stp off
+      bridge_maxwait 5
+
+wpa-iface wlan0
+wpa-bridge br0
+wpa-driver wext
+wpa-conf /etc/wpa_supplicant/wpa_supplicant.conf
+
+
+
+# brctl addbr br0
+
+# ip addr show
+
+brctl addif br0 wlan0 eth0
+
+brctl show
+
+http://serverfault.com/questions/152363/bridging-wlan0-to-eth0
+# brctl addif <bridgename> <wifiInterface>
+can't add <wifiInterface> to bridge <bridgename>: Operation not supported
+
+apt-get install iw
+
+iw dev wlan0 set 4addr on
+
+
+# The primary network interface
+allow-hotplug eth0
+
+iface eth0 inet static
+        address 192.168.1.15
+        network 192.168.1.0
+        netmask 255.255.255.0
+        broadcast 192.168.1.255
+        gateway 192.168.1.1
+        #dns-nameservers 192.168.1.1
+        #dns-search home
+        auto eth0
+
+iface wlan0 inet static
+        address 192.168.1.16
+        network 192.160.1.0
+        netmask 255.255.255.0
+        broadcast 192.168.1.255
+        gateway 192.168.1.1
+        #dns-nameservers 192.168.1.1
+        #dns-search home
+        #wireless_keymode open
+        #wireless_mode managed
+        #wireless_nick srvolivier
+        #wireless-essid SMC2870
+        #wireless-key wepkey
+        wireless_mode managed
+		wireless_essid any
+		wpa-driver wext
+		wpa-conf /etc/wpa_supplicant.conf
+		auto wlan0
+		
+iface br0 inet static
+        address 192.168.1.17
+        #network 192.168.1.0
+        netmask 255.255.255.0
+        #broadcast 192.168.1.255
+        gateway 192.168.1.1
+        #dns-nameservers 212.27.39.2
+        #dns-search home
+        bridge_ports eth0 wlan0
+        auto br0
+
+		
+		
+
+##################################
+To remove a bridge:
+
+brctl delbr br0
+
+Related articles:
+
+https://wiki.debian.org/BridgeNetworkConnections
