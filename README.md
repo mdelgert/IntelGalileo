@@ -12,6 +12,6 @@ User: user Password: user
 
 User: root Password: root 
 
-* [Creating Intel Galileo Debian build server.](//Documentation/GalileoDebianBuildNotes.txt)
+* [Creating Intel Galileo Debian build server.](Documentation/GalileoDebianBuildNotes.txt)
 
 * [Installing C# mono on Galileo board](http://galileo.codeplex.com)
